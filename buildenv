@@ -5,3 +5,9 @@
 export ZOPEN_TYPE="TARBALL"
 export ZOPEN_TARBALL_URL="https://ftp.gnu.org/gnu/sed/sed-4.8.tar.gz"
 export ZOPEN_TARBALL_DEPS="curl make gzip autoconf automake gettext makeinfo perl rsync"
+
+zopen_check_results()
+{
+  return 3 # non-functional
+}
+
