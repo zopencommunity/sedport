@@ -7,20 +7,20 @@ export ZOPEN_TARBALL_URL="https://ftp.gnu.org/gnu/sed/sed-4.8.tar.gz"
 #
 # Add in coreutils for 'join -' support
 #
-export ZOPEN_TARBALL_DEPS="curl make gzip autoconf automake makeinfo perl rsync m4 wget coreutils"
+export ZOPEN_TARBALL_DEPS="curl make gzip autoconf automake makeinfo perl rsync m4 wget coreutils zoslib"
 export ZOPEN_BOOTSTRAP='skip'
 
 zopen_check_results()
 {
-
+#Starter results for 'sed'
 #============================================================================
 #Testsuite summary for GNU sed 4.8
 #============================================================================
 # TOTAL: 67
-# PASS:  34
+# PASS:  48
 # SKIP:  9
 # XFAIL: 0
-# FAIL:  24
+# FAIL:  10
 # XPASS: 0
 # ERROR: 0
 chk="$1/$2_check.log"
@@ -38,7 +38,7 @@ actualFailures=$((${FAIL}+${XFAIL}+${ERROR}))
 cat <<ZZ
 actualFailures:$actualFailures
 totalTests:$totalTests
-expectedFailures:24
+expectedFailures:10
 ZZ
 
 }
