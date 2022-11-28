@@ -3,10 +3,43 @@
 #
 export ZOPEN_TYPE="TARBALL"
 export ZOPEN_TARBALL_URL="https://ftp.gnu.org/gnu/sed/sed-4.8.tar.gz"
-export ZOPEN_TARBALL_DEPS="curl make gzip autoconf automake gettext makeinfo perl rsync"
+
+#
+# Add in coreutils for 'join -' support
+#
+export ZOPEN_TARBALL_DEPS="curl make gzip autoconf automake makeinfo perl rsync m4 wget coreutils"
+export ZOPEN_BOOTSTRAP='skip'
 
 zopen_check_results()
 {
-  return 3 # non-functional
+
+#============================================================================
+#Testsuite summary for GNU sed 4.8
+#============================================================================
+# TOTAL: 67
+# PASS:  34
+# SKIP:  9
+# XFAIL: 0
+# FAIL:  24
+# XPASS: 0
+# ERROR: 0
+chk="$1/$2_check.log"
+
+ERROR=$(egrep '^# ERROR:' ${chk} | tail -1 | awk '{ print $3; }')
+SKIP=$(egrep '^# SKIP:' ${chk} | tail -1 | awk '{ print $3; }')
+PASS=$(egrep '^# PASS:' ${chk} | tail -1 | awk '{ print $3; }')
+FAIL=$(egrep '^# FAIL:' ${chk} | tail -1 | awk '{ print $3; }')
+XFAIL=$(egrep '^# XFAIL:' ${chk} | tail -1 | awk '{ print $3; }')
+TOTAL=$(egrep '^# TOTAL:' ${chk} | tail -1 | awk '{ print $3; }')
+
+totalTests=$((${TOTAL}-${SKIP}))
+actualFailures=$((${FAIL}+${XFAIL}+${ERROR}))
+
+cat <<ZZ
+actualFailures:$actualFailures
+totalTests:$totalTests
+expectedFailures:24
+ZZ
+
 }
 
