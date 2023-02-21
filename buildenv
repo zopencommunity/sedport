@@ -7,7 +7,7 @@ export ZOPEN_TARBALL_URL="https://ftp.gnu.org/gnu/sed/sed-4.8.tar.gz"
 #
 # Add in coreutils for 'join -' support
 #
-export ZOPEN_TARBALL_DEPS="curl make gzip autoconf automake makeinfo perl rsync m4 wget coreutils zoslib"
+export ZOPEN_TARBALL_DEPS="curl make gzip autoconf automake texinfo perl rsync m4 wget coreutils zoslib"
 export ZOPEN_BOOTSTRAP='skip'
 
 zopen_check_results()
