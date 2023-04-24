@@ -3,6 +3,10 @@
 #
 export ZOPEN_TYPE="TARBALL"
 export ZOPEN_TARBALL_URL="https://ftp.gnu.org/gnu/sed/sed-4.8.tar.gz"
+#FIXME: Specify -fno-builtin to bypass malloc(0) opt issue
+# Revert once fixed in clang
+export ZOPEN_EXTRA_CFLAGS="-fno-builtin"
+exopen ZOPEN_COMP=CLANG
 
 #
 # Add in coreutils for 'join -' support
@@ -17,10 +21,10 @@ zopen_check_results()
 #Testsuite summary for GNU sed 4.8
 #============================================================================
 # TOTAL: 67
-# PASS:  48
+# PASS:  49
 # SKIP:  9
 # XFAIL: 0
-# FAIL:  10
+# FAIL:  9
 # XPASS: 0
 # ERROR: 0
 chk="$1/$2_check.log"
@@ -38,7 +42,7 @@ actualFailures=$((${FAIL}+${XFAIL}+${ERROR}))
 cat <<ZZ
 actualFailures:$actualFailures
 totalTests:$totalTests
-expectedFailures:10
+expectedFailures:9
 ZZ
 
 }
