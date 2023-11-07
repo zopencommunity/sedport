@@ -3,16 +3,15 @@ SED_VERSION="4.8"
 
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_STABLE_URL="https://ftp.gnu.org/gnu/sed/sed-${SED_VERSION}.tar.gz"
+#
+# Add in coreutils for 'join -' support
+#
+export ZOPEN_STABLE_DEPS="curl make gzip autoconf automake texinfo perl rsync m4 wget coreutils zoslib"
 
 #FIXME: Specify -fno-builtin to bypass malloc(0) opt issue
 # Revert once fixed in clang
 export ZOPEN_EXTRA_CFLAGS="-fno-builtin"
 exopen ZOPEN_COMP=CLANG
-
-#
-# Add in coreutils for 'join -' support
-#
-export ZOPEN_TARBALL_DEPS="curl make gzip autoconf automake texinfo perl rsync m4 wget coreutils zoslib"
 export ZOPEN_BOOTSTRAP='skip'
 
 zopen_check_results()
