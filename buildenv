@@ -1,8 +1,9 @@
-#
-# Set up environment variables for general build tool to operate
-#
-export ZOPEN_TYPE="TARBALL"
-export ZOPEN_TARBALL_URL="https://ftp.gnu.org/gnu/sed/sed-4.8.tar.gz"
+# bump: sed-version /SED_VERSION="(.*)"/ https://ftp.gnu.org/gnu/sed/|re:/href="sed-([\d.]+).tar.gz"/$1/|semver:*
+SED_VERSION="4.8"
+
+export ZOPEN_BUILD_LINE="STABLE"
+export ZOPEN_STABLE_URL="https://ftp.gnu.org/gnu/sed/sed-${SED_VERSION}.tar.gz"
+
 #FIXME: Specify -fno-builtin to bypass malloc(0) opt issue
 # Revert once fixed in clang
 export ZOPEN_EXTRA_CFLAGS="-fno-builtin"
