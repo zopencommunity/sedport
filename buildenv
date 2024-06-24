@@ -8,9 +8,6 @@ export ZOPEN_STABLE_URL="https://ftp.gnu.org/gnu/sed/sed-${SED_VERSION}.tar.gz"
 #
 export ZOPEN_STABLE_DEPS="curl make gzip autoconf automake texinfo perl rsync m4 wget coreutils getopt zoslib"
 
-#FIXME: Specify -fno-builtin to bypass malloc(0) opt issue
-# Revert once fixed in clang
-export ZOPEN_EXTRA_CFLAGS="-fno-builtin"
 export ZOPEN_COMP=CLANG
 export ZOPEN_BOOTSTRAP='skip'
 
@@ -43,7 +40,13 @@ actualFailures:$actualFailures
 totalTests:$totalTests
 expectedFailures:9
 ZZ
+}
 
+zopen_post_install()
+{
+  mv $ZOPEN_INSTALL_DIR/bin/sed $ZOPEN_INSTALL_DIR/bin/gsed
+  mkdir $ZOPEN_INSTALL_DIR/altbin
+  ln -s ../bin/gsed $ZOPEN_INSTALL_DIR/altbin/sed
 }
 
 zopen_get_version()
