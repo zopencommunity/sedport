@@ -53,7 +53,7 @@ zopen_install_caveats()
 {
 cat <<ZZ
 GNU Sed has been installed as gsed under bin/ to avoid collision with z/OS /bin/sed.
-If you prefer to use the GNU Sed as sed, source `zopen-config` with the option --override-zos-tools.
+If you prefer to use the GNU Sed as sed, source zopen-config with the option --override-zos-tools.
 Or add \$ZOPEN_ROOTFS/usr/local/altbin to your \$PATH.
 ZZ
 }
