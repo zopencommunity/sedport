@@ -49,6 +49,15 @@ zopen_post_install()
   ln -s ../bin/gsed $ZOPEN_INSTALL_DIR/altbin/sed
 }
 
+zopen_install_caveats()
+{
+cat <<ZZ
+GNU Sed has been installed as gsed under bin/ to avoid collision with z/OS /bin/sed.
+If you prefer to use the GNU Sed as sed, source `zopen-config` with the option --override-zos-tools.
+Or add \$ZOPEN_ROOTFS/usr/local/altbin to your \$PATH.
+ZZ
+}
+
 zopen_get_version()
 {
     ./sed/sed --version | head -1 | awk '{print $4}'
