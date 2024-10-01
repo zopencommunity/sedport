@@ -47,14 +47,19 @@ zopen_post_install()
   mv $ZOPEN_INSTALL_DIR/bin/sed $ZOPEN_INSTALL_DIR/bin/gsed
   mkdir $ZOPEN_INSTALL_DIR/altbin
   ln -s ../bin/gsed $ZOPEN_INSTALL_DIR/altbin/sed
+
+  mkdir -p $ZOPEN_INSTALL_DIR/share/altman/man1
+  mv $ZOPEN_INSTALL_DIR/share/man/man1/sed.1 $ZOPEN_INSTALL_DIR/share/man/man1/gsed.1
+  ln -s ../../man/man1/gsed.1 $ZOPEN_INSTALL_DIR/share/altman/man1/sed.1
 }
 
 zopen_install_caveats()
 {
 cat <<ZZ
-GNU Sed has been installed as gsed under bin/ to avoid collision with z/OS /bin/sed.
-If you prefer to use the GNU Sed as sed, source zopen-config with the option --override-zos-tools.
-Or add \$ZOPEN_ROOTFS/usr/local/altbin to your \$PATH.
+GNU sed has been installed as gsed under the bin/ dir to avoid collision with z/OS /bin/sed.
+The conflicting manpages have been installed under the share/altman dir. You can use zotman to view
+the manpages as such: zotman gsed
+If you prefer to use the GNU sed as sed, source zopen-config with the option --override-zos-tools.
 ZZ
 }
 
