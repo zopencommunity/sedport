@@ -2,6 +2,7 @@
 SED_VERSION="4.9"
 
 export ZOPEN_BUILD_LINE="STABLE"
+export ZOPEN_CATEGORIES="utilities core"
 export ZOPEN_STABLE_URL="https://ftp.gnu.org/gnu/sed/sed-${SED_VERSION}.tar.gz"
 #
 # Add in coreutils for 'join -' support
